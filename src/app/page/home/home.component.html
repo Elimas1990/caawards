@@ -1,0 +1,42 @@
+
+<div class="container-fluid px-0">
+    <div class="row gx-0">
+      <div class="col">
+        <video src="./../../../assets/img/CAA.webm"  autoplay loop oncanplay="this.play()" onloadedmetadata="this.muted = true"></video>
+      </div>
+      
+    </div>
+
+  
+    <!--<div id="carouselInicio" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let banner of img_banner; let firstItem = first" [ngClass]="{active:firstItem}">
+                <img class="d-block w-100" [src]="banner" >
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselInicio" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselInicio" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>-->
+    <h2 class="text-center my-3 text-white">Categorias</h2>
+    <div class="row gx-0 justify-content-center">
+      <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6">
+        <app-categorias></app-categorias>
+        
+        
+      </div>
+      <div class="row gx-0 justify-content-center">
+        <div class="col">
+          <app-lista-nominados></app-lista-nominados>
+        </div>
+      </div>      
+    </div>
+    
+    
+    
+</div>

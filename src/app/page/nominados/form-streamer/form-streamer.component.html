@@ -1,0 +1,84 @@
+<fieldset class="border p-3 m-1 border-warning" >
+    <legend class="w-auto"><u>Registro Streamer</u></legend>
+    <form  [formGroup]="formStreamer" (ngSubmit)="formStreamer.valid" >
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputTag" placeholder="Streamer tag" formControlName="tag"
+            [ngClass]="{'is-invalid':formStreamer.get('tag')?.touched && formStreamer.get('tag')?.invalid, 'is-valid':formStreamer.get('tag')?.valid}"
+            aria-describedby="validationTag">
+            <div class="invalid-feedback text-center" id="validationTag">
+                El Tag es obligatorio
+            </div>
+            <label for="inputTag">Streamer tag</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputNombre" placeholder="Nombre streamer" formControlName="nombre"
+            [ngClass]="{'is-invalid':formStreamer.get('nombre')?.touched && formStreamer.get('nombre')?.invalid, 'is-valid':formStreamer.get('nombre')?.valid}"
+            aria-describedby="inputNombre"/>
+            <div class="invalid-feedback text-center" id="inputNombre">
+                El Nombre es obligatorio
+            </div>
+            <label for="inputNombre">Nombre streamer</label>
+        </div>
+    
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputApellido" placeholder="Apellido streamer" formControlName="apellido"
+            [ngClass]="{'is-invalid':formStreamer.get('apellido')?.touched && formStreamer.get('apellido')?.invalid, 'is-valid':formStreamer.get('apellido')?.valid}"
+            aria-describedby="inputApellido"/>
+            <div class="invalid-feedback text-center" id="inputApellido">
+                El Apellido es obligatorio
+            </div>
+            <label for="inputApellido">Apellido streamer</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="inputEdad" placeholder="Fecha de nacimiento del streamer" formControlName="fecha_nacimiento"
+            [ngClass]="{'is-invalid': formStreamer.get('fecha_nacimiento')?.invalid , 'is-valid':formStreamer.get('fecha_nacimiento')?.touched && formStreamer.get('fecha_nacimiento')?.valid}"
+            aria-describedby="inputEdad"/>
+            <div class="invalid-feedback text-center" id="inputEdad" >
+                La fecha invalida
+            </div>
+            <label for="inputEdad">Fecha de nacimiento del streamer</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email streamer" formControlName="email"
+            [ngClass]="{'is-invalid':formStreamer.get('email')?.touched && formStreamer.get('email')?.invalid, 'is-valid':formStreamer.get('email')?.valid}"
+            aria-describedby="inputEmail"/>
+            <div class="invalid-feedback text-center" id="inputEmail">
+                El Email es obligatorio
+            </div>
+            <label for="inputEmail">Email del streamer</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="url" class="form-control" id="inputCanal" placeholder="URL canal de twitch" formControlName="canal"
+            [ngClass]="{'is-invalid':formStreamer.get('canal')?.touched && formStreamer.get('canal')?.invalid, 'is-valid':formStreamer.get('canal')?.valid}"
+            aria-describedby="inputCanal"/>
+            <div class="invalid-feedback text-center" id="inputCanal">
+                El URL del canal es obligatorio
+            </div>
+            <label for="inputCanal">URL canal de twitch</label>
+        </div>
+
+        <div class="mb-3">
+            <div class="input-group custom-file-button">
+                <label class="input-group-text" for="inputGroupFile"><i class="fas fa-cloud-upload-alt"></i></label>
+                <input type="file" class="form-control" id="inputGroupFile"  #inputGroupFile
+                (change)="handleFileInput($event)"
+                [ngClass]="{'is-invalid':formStreamer.get('foto')?.touched && formStreamer.get('foto')?.invalid, 'is-valid':formStreamer.get('foto')?.valid}"
+                aria-describedby="inputFoto" />
+                <div class="invalid-feedback text-center" id="inputFoto">
+                    La foto es obligatoria y peso max 10mb
+                 </div>
+            </div>
+        </div>
+
+        <div class="btn-group w-100">
+            <button type="button" class="btn btn-verde"  type="submit" (click)="guardarUsuario()" [disabled]="!formStreamer.valid">Generar Usuario</button>
+            <button type="button" class="btn btn-amarillo "  type="reset" >Reset Formulario</button>
+        </div>
+        
+    </form>
+</fieldset>

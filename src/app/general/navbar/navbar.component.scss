@@ -1,0 +1,15 @@
+@import "./../../../variables_generales.scss";
+.nav-link, .navbar-brand{
+    color:$dorado;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+}
+
+
+
+
+.avatar{
+    width: 3vw;
+    border-radius: 50%;
+    border: 1px solid black;
+}

@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <h2 class="text-center">Registrar Streamer</h2>
+    <div class="row d-flex justify-content-evenly">
+        <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-xl-4 col-xxl-4">
+            <app-form-streamer (dataUsuario)="dataUsuario($event)"></app-form-streamer>
+            <img [src]="urlStreamer" alt="">
+        </div>
+        <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-xl-4 col-xxl-4">
+            <app-form-nominados [listaStreamers]="listaStreamers" [listaCategorias]="listaCategorias"></app-form-nominados>
+        </div>
+    </div>
+</div>

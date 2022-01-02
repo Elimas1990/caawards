@@ -1,0 +1,6 @@
+<div class="form-floating my-3">
+    <select class="form-select text-center" id="listaCategorias" aria-label="">
+      <option  *ngFor="let cat of listaCategorias" [value]="cat['nombre']">{{ cat['nombre']}}</option>
+    </select>
+    <label for="floatingSelect">Categorias CA Awards</label>
+</div>

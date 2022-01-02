@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "voting-6eeec": {
+      "hosting": {
+        "vot": [
+          "voting-6eeec"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "voting-6eeec"
+  }
+}

@@ -1,1 +1,117 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,300&family=Orbitron&display=swap');
+@import "variables_generales.scss";
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Grandstander', cursive;
+    font-family: 'Orbitron', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body{
+    background: linear-gradient(45deg, $negro 40%,  $verde );
+    //overflow:hidden;
+    //&:hover{overflow-y:auto;}
+}
+
+
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=url],
+input[type=date],
+input[type=file],
+select,
+textarea{
+    background-color: $crema!important;
+    border-color: $dorado!important;
+    resize: none;
+    border-radius: 0%!important;
+
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+  
+.custom-file-button {
+    & input[type=file]::-webkit-file-upload-button{
+        display: none;
+    }
+    & input[type=file]::file-selector-button{
+        display: none;
+    }
+    & label {
+        background-color: $dorado;
+        cursor: pointer;
+        border-color: $amarillo;
+        border-radius: 0%;
+    }
+}
+
+
+.btn-verde{
+    background-color: $verde;
+    color: white;
+    border-color: $verde-claro;
+    &.active{
+        background-color: rgba(119, 179, 126, 0.85);
+        box-shadow: 0 0 0 0.25rem rgb(81, 146, 89 , 0.5);
+        &:focus{
+            box-shadow: 0 0 0 0.25rem rgb(81, 146, 89 , 0.5);
+        }
+    }
+    &:hover{
+        color: white;
+    }
+}
+
+.btn-amarillo{
+    background-color: $dorado;
+    border-color: $amarillo;
+    &.active{
+        background-color: rgba(252, 194, 101, 0.85);
+        box-shadow: 0 0 0 0.25rem rgb(231,163,57 , 0.5);
+        &:focus{
+            box-shadow: 0 0 0 0.25rem rgb(231,163,57 , 0.5);
+        }
+    }
+    
+}
+
+.btn{
+    border-radius: 0;
+    &:focus{
+        box-shadow: none
+    }
+   
+}
+hr{
+    border-top: 2px solid $dorado;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: $crema; 
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: $dorado; 
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $amarillo;
+}
