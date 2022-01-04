@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { query,collection, Firestore, addDoc,  where, collectionData } from '@angular/fire/firestore';
+import { query,collection, Firestore, addDoc,  where, collectionData, setDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +8,33 @@ import { query,collection, Firestore, addDoc,  where, collectionData } from '@an
 export class NominadosService {
 
   collec_nominados:any
-  nombre_coleccion:string='nominados'
+  listado_nominados:Observable<any>
+  nombre_coleccion:string='ternas'
 
   constructor(firestore:Firestore) {
     this.collec_nominados = collection(firestore, this.nombre_coleccion);
+    this.listado_nominados = collectionData(this.collec_nominados);
   }
 
-  consoltarNominados(campo:string,operador:any,valor:any){
+  consultaSimple(campo:string,operador:any,valor:any){
     const q = query(this.collec_nominados, where(campo, operador, valor));
-    //console.log(typeof where(campo, operador, valor))
+    
     return collectionData(q,{idField:'iddoc'})
+  }
+
+  consultaDoble(where1:any,where2:any){
+    const q = query(this.collec_nominados,where1,where2);
+    
+    return collectionData(q,{idField:'iddoc'})
+  }
+
+  registrarNominados(obj:object){
+    
+    return addDoc(this.collec_nominados,obj)
+    
+  }
+
+  getAll(){
+    return this.listado_nominados;
   }
 }

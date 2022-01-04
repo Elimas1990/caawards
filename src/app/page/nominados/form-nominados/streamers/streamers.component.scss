@@ -1,0 +1,39 @@
+@import "./../../../../../variables_generales.scss";
+.avatar{
+    border-radius: 50%;
+}
+
+.card{
+
+    border:0;
+    border-radius: 0;
+    /*width: 50px;
+    flex: 1 0 10%;
+    grid-template-columns: repeat(4, 1fr);*/
+}
+.card-group{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    max-height: 55vh;
+    overflow: auto;
+}
+.card-text{
+    font-size: 10px;
+    white-space: nowrap
+}
+img{
+    cursor:pointer;
+    &:hover{
+        border: 2px solid rgba(175, 69, 51, 0.5);
+        //box-shadow: 0 0 0 0.15rem rgba(153, 109, 68, 0.5);
+    }
+    
+}
+
+.bg-select{
+    background-color: $amarillo;
+    //color:white;
+}
+

@@ -5,23 +5,23 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StreamerTagFilterPipe implements PipeTransform {
 
-  transform(items: any[], nombre: string) {
+  transform(items: any[], nombre: string,campo: string) {
     const resultado=[];
     if(!items) return [];
     if(!nombre) return items;
 
-    return items.filter( it => {
-      let check
+    return items.filter( x => {
+      /*let check
       if(it.historia){
         let data=Object.keys(it.historia)
         check = data.filter(function(item) {
           return item.includes(nombre)
         })
-      }
+      }*/
       
       
-      if(it.tag.toLowerCase().includes(nombre)){
-        return it
+      if(x[campo].toLowerCase().includes(nombre)){
+        return x
       }
      
     });

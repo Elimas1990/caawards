@@ -13,9 +13,9 @@ export class NominadosComponent implements OnInit {
   listaStreamers=[]
   listaCategorias=[]
   constructor(private srvStreamers:StreamersService,
-    private serviceCategoria:CategoriasService) { 
+    private srvCategoria:CategoriasService,) { 
     srvStreamers.getAll().subscribe(x=>this.listaStreamers=x)
-    serviceCategoria.getAll().subscribe(x=>this.listaCategorias=x)
+    srvCategoria.getAll().subscribe(x=>this.listaCategorias=x)
   }
 
   ngOnInit(): void {
@@ -25,5 +25,6 @@ export class NominadosComponent implements OnInit {
     this.srvStreamers.guardarStreamer(user)
     
   }
+  
 
 }

@@ -1,0 +1,12 @@
+<!--<button class="btn btn-amarillo btn-categoria m-1" *ngFor="let categoria of listaCategorias"  (click)="selectCategoria($event,categoria)">{{categoria['nombre']}}</button>
+-->
+
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-action list-group-item-warning" 
+    *ngFor="let categoria of listaCategorias | streamerTagFilter: filtroTerna:'nombre'"  
+    (click)="selectCategoria($event,categoria)">
+    <h5><u>{{categoria['nombre']}}</u></h5>
+    
+    <small>{{categoria['descripcion']}}</small></li>
+</ul>

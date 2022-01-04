@@ -10,6 +10,11 @@ import { FormStreamerComponent } from './nominados/form-streamer/form-streamer.c
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormNominadosComponent } from './nominados/form-nominados/form-nominados.component';
 import { StreamerTagFilterPipe } from '../pipes/streamer-tag-filter.pipe';
+import { TernasComponent } from './nominados/form-nominados/ternas/ternas.component';
+import { StreamersComponent } from './nominados/form-nominados/streamers/streamers.component';
+import { StreamerSortPipe } from '../pipes/streamer-sort.pipe';
+import { SelectAnioComponent } from './home/select-anio/select-anio.component';
+import { SelectCategoriaComponent } from './home/select-categoria/select-categoria.component';
 
 
 
@@ -21,7 +26,12 @@ import { StreamerTagFilterPipe } from '../pipes/streamer-tag-filter.pipe';
     NominadosComponent,
     FormStreamerComponent,
     FormNominadosComponent,
-    StreamerTagFilterPipe
+    StreamerTagFilterPipe,
+    StreamerSortPipe,
+    TernasComponent,
+    StreamersComponent,
+    SelectAnioComponent,
+    SelectCategoriaComponent
   ],
   imports: [
     CommonModule,

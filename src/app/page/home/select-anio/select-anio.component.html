@@ -1,0 +1,6 @@
+<div class="form-floating my-3">
+    <select class="form-select text-center" id="listaAnio" aria-label="" [(ngModel)]="anio" (ngModelChange)="anioSelect()">
+      <option  *ngFor="let anio of listaAnios" [value]="anio">{{ anio }}</option>
+    </select>
+    <label for="listaAnio">Año de los awards</label>
+</div>

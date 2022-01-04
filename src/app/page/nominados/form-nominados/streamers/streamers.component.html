@@ -1,0 +1,8 @@
+<div class="card-group">
+    <div class="card"  *ngFor="let streamer of listaStreamers | streamerTagFilter: filtroStreamer:'tag' | streamerSort:'selected'"  >
+        <img [src]="streamer.avatar" class="card-img-top btn-streamer" [attr.data-sectionvalue]="streamer.tag" (click)="selectStreamer(streamer)">
+        <div class="card-body p-1 d-flex justify-content-center align-items-center" [ngClass]="{'bg-select':streamer.selected}">
+            <p class="card-text text-center" [attr.data-sectionvalue]="streamer.tag">{{streamer['tag']}}</p>
+        </div>
+    </div>
+</div>   
