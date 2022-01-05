@@ -18,13 +18,13 @@ export class StreamersComponent implements OnInit {
     if(value.length > 0){
       value.forEach(element => {
         this.srvTwitch.search(`login=${element.tag.toLowerCase()}`,"/users").subscribe(x=>{
-          let avatar={avatar:'https://static-cdn.jtvnw.net/jtv_user_pictures/8a6381c7-d0c0-4576-b179-38bd5ce1d6af-profile_image-70x70.png'}
-          
-          if (x.data.length >0){
-            avatar={avatar:x.data[0].profile_image_url}
-          }
-          
-          Object.assign(element,avatar)
+            let avatar={avatar:'https://static-cdn.jtvnw.net/jtv_user_pictures/8a6381c7-d0c0-4576-b179-38bd5ce1d6af-profile_image-70x70.png'}
+            
+            if (x.data.length >0){
+              avatar={avatar:x.data[0].profile_image_url}
+            }
+            
+            Object.assign(element,avatar)
           })
       });
       this._listaStreamers=value
@@ -63,6 +63,15 @@ export class StreamersComponent implements OnInit {
     this.streamersSeleccionados.emit(this.listaSeleccionados)
     
   }
+
+  public ternaGuardada(){
+    console.log('ejecute')
+    this.listaStreamers.forEach((element:any) => {
+      delete element.selected
+    });
+  }
+
+
 
 
 }

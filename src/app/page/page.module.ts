@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { PageRoutingModule } from './page-routing.module';
 import { HomeComponent } from './home/home.component';
-import { CategoriasComponent } from './home/categorias/categorias.component';
 import { ListaNominadosComponent } from './home/lista-nominados/lista-nominados.component';
 import { NominadosComponent } from './nominados/nominados.component';
 import { FormStreamerComponent } from './nominados/form-streamer/form-streamer.component';
@@ -15,23 +14,26 @@ import { StreamersComponent } from './nominados/form-nominados/streamers/streame
 import { StreamerSortPipe } from '../pipes/streamer-sort.pipe';
 import { SelectAnioComponent } from './home/select-anio/select-anio.component';
 import { SelectCategoriaComponent } from './home/select-categoria/select-categoria.component';
+import { EdadPipe } from '../pipes/edad.pipe';
+import { FormCategoriasComponent } from './nominados/form-categorias/form-categorias.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CategoriasComponent,
     ListaNominadosComponent,
     NominadosComponent,
     FormStreamerComponent,
     FormNominadosComponent,
     StreamerTagFilterPipe,
     StreamerSortPipe,
+    EdadPipe,
     TernasComponent,
     StreamersComponent,
     SelectAnioComponent,
-    SelectCategoriaComponent
+    SelectCategoriaComponent,
+    FormCategoriasComponent
   ],
   imports: [
     CommonModule,

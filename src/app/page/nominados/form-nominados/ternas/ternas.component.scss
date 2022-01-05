@@ -1,3 +1,8 @@
 .list-group-item-action{
     cursor: pointer;
 }
+
+.list-group{
+    max-height: 65vh;
+    overflow: auto;
+}

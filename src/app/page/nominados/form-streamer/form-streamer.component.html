@@ -1,46 +1,57 @@
 <fieldset class="border p-3 m-1 border-warning" >
-    <legend class="w-auto"><u>Registro Streamer</u></legend>
-    <form  [formGroup]="formStreamer" (ngSubmit)="formStreamer.valid" >
+    <legend class="w-auto" data-bs-toggle="collapse" data-bs-target="#formularioStreamer" ><u>Registro Streamer</u></legend>
+    <form  [formGroup]="formStreamer" (ngSubmit)="formStreamer.valid" id="formularioStreamer" class="collapse show">
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputTag" placeholder="Streamer tag" formControlName="tag"
-            [ngClass]="{'is-invalid':formStreamer.get('tag')?.touched && formStreamer.get('tag')?.invalid, 'is-valid':formStreamer.get('tag')?.valid}"
-            aria-describedby="validationTag">
-            <div class="invalid-feedback text-center" id="validationTag">
-                El Tag es obligatorio
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputTag" placeholder="Streamer tag" formControlName="tag" (keyup)="completarCanal()" 
+                    [ngClass]="{'is-invalid':formStreamer.get('tag')?.touched && formStreamer.get('tag')?.invalid, 'is-valid':formStreamer.get('tag')?.valid}"
+                    aria-describedby="validationTag">
+                    <div class="invalid-feedback text-center" id="validationTag">
+                        El Tag es obligatorio
+                    </div>
+                    <label for="inputTag">Streamer tag</label>
+                </div>
             </div>
-            <label for="inputTag">Streamer tag</label>
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputNombre" placeholder="Nombre streamer" formControlName="nombre"
-            [ngClass]="{'is-invalid':formStreamer.get('nombre')?.touched && formStreamer.get('nombre')?.invalid, 'is-valid':formStreamer.get('nombre')?.valid}"
-            aria-describedby="inputNombre"/>
-            <div class="invalid-feedback text-center" id="inputNombre">
-                El Nombre es obligatorio
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="inputEdad" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento"
+                    [ngClass]="{'is-invalid': formStreamer.get('fecha_nacimiento')?.invalid , 'is-valid':formStreamer.get('fecha_nacimiento')?.touched && formStreamer.get('fecha_nacimiento')?.valid}"
+                    aria-describedby="inputEdad"/>
+                    <div class="invalid-feedback text-center" id="inputEdad" >
+                        La fecha invalida
+                    </div>
+                    <label for="inputEdad">Fecha de nacimiento</label>
+                </div>
             </div>
-            <label for="inputNombre">Nombre streamer</label>
         </div>
-    
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputApellido" placeholder="Apellido streamer" formControlName="apellido"
-            [ngClass]="{'is-invalid':formStreamer.get('apellido')?.touched && formStreamer.get('apellido')?.invalid, 'is-valid':formStreamer.get('apellido')?.valid}"
-            aria-describedby="inputApellido"/>
-            <div class="invalid-feedback text-center" id="inputApellido">
-                El Apellido es obligatorio
+        
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputNombre" placeholder="Nombre streamer" formControlName="nombre"
+                    [ngClass]="{'is-invalid':formStreamer.get('nombre')?.touched && formStreamer.get('nombre')?.invalid, 'is-valid':formStreamer.get('nombre')?.valid}"
+                    aria-describedby="inputNombre"/>
+                    <div class="invalid-feedback text-center" id="inputNombre">
+                        El Nombre es obligatorio
+                    </div>
+                    <label for="inputNombre">Nombre streamer</label>
+                </div>
             </div>
-            <label for="inputApellido">Apellido streamer</label>
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="date" class="form-control" id="inputEdad" placeholder="Fecha de nacimiento del streamer" formControlName="fecha_nacimiento"
-            [ngClass]="{'is-invalid': formStreamer.get('fecha_nacimiento')?.invalid , 'is-valid':formStreamer.get('fecha_nacimiento')?.touched && formStreamer.get('fecha_nacimiento')?.valid}"
-            aria-describedby="inputEdad"/>
-            <div class="invalid-feedback text-center" id="inputEdad" >
-                La fecha invalida
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputApellido" placeholder="Apellido streamer" formControlName="apellido"
+                    [ngClass]="{'is-invalid':formStreamer.get('apellido')?.touched && formStreamer.get('apellido')?.invalid, 'is-valid':formStreamer.get('apellido')?.valid}"
+                    aria-describedby="inputApellido"/>
+                    <div class="invalid-feedback text-center" id="inputApellido">
+                        El Apellido es obligatorio
+                    </div>
+                    <label for="inputApellido">Apellido streamer</label>
+                </div>
             </div>
-            <label for="inputEdad">Fecha de nacimiento del streamer</label>
         </div>
+        
 
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="inputEmail" placeholder="Email streamer" formControlName="email"
@@ -62,6 +73,36 @@
             <label for="inputCanal">URL canal de twitch</label>
         </div>
 
+        <div class="form-floating mb-3">
+            <input type="url" class="form-control" id="inputInstagram" placeholder="URL instagram" formControlName="instagram"
+            [ngClass]="{'is-invalid':formStreamer.get('instagram')?.touched && formStreamer.get('instagram')?.invalid, 'is-valid':formStreamer.get('instagram')?.valid}"
+            aria-describedby="inputInstagram"/>
+            <div class="invalid-feedback text-center" id="inputInstagram">
+                El URL del instagram
+            </div>
+            <label for="inputInstagram">URL instagram</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="url" class="form-control" id="inputTwitter" placeholder="URL twitter" formControlName="twitter"
+            [ngClass]="{'is-invalid':formStreamer.get('twitter')?.touched && formStreamer.get('twitter')?.invalid, 'is-valid':formStreamer.get('twitter')?.valid}"
+            aria-describedby="inputTwitter"/>
+            <div class="invalid-feedback text-center" id="inputTwitter">
+                El URL del twitter
+            </div>
+            <label for="inputTwitter">URL twitter</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="url" class="form-control" id="inputYoutube" placeholder="URL youtube" formControlName="youtube"
+            [ngClass]="{'is-invalid':formStreamer.get('youtube')?.touched && formStreamer.get('youtube')?.invalid, 'is-valid':formStreamer.get('youtube')?.valid}"
+            aria-describedby="inputYoutube"/>
+            <div class="invalid-feedback text-center" id="inputYoutube">
+                El URL del youtube
+            </div>
+            <label for="inputYoutube">URL youtube</label>
+        </div>
+
         <div class="mb-3">
             <div class="input-group custom-file-button">
                 <label class="input-group-text" for="inputGroupFile"><i class="fas fa-cloud-upload-alt"></i></label>
@@ -76,7 +117,7 @@
         </div>
 
         <div class="btn-group w-100">
-            <button type="button" class="btn btn-verde"  type="submit" (click)="guardarUsuario()" [disabled]="!formStreamer.valid">Generar Usuario</button>
+            <button type="button" class="btn btn-verde"  type="submit" (click)="guardarUsuario()" [disabled]="!formStreamer.valid">Guardar Streamer</button>
             <button type="button" class="btn btn-amarillo "  type="reset" >Reset Formulario</button>
         </div>
         

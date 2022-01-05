@@ -25,6 +25,11 @@ export class NominadosComponent implements OnInit {
     this.srvStreamers.guardarStreamer(user)
     
   }
+  dataCategoria(categoria:object){
+    
+    this.srvCategoria.guardarCategoria(categoria)
+    
+  }
   
 
 }

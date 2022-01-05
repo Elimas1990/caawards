@@ -1,14 +1,27 @@
-<div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-around">
-    <div class="col" *ngFor="let nominado of listaNominados">
+<div class="row row-cols-1  g-4 d-flex justify-content-around mt-5"
+[ngClass]="{'row-cols-md-3': listaStreamers.length < 4, 'row-cols-md-5': listaStreamers.length > 3}">
+    <div class="col" *ngFor="let nominado of listaStreamers">
 
-    <div class="card" >
-      <img [src]="nominado.foto" class="card-img-top" alt="...">
+    <div class="card " [ngClass]="{'card-border-silver': nominado.puesto === 2, 'card-border-gold': nominado.puesto === 1}">
+      <div class="card-header text-center text-white">
+        {{nominado.tag}}
+      </div>
+      <img [src]="nominado.foto" class="" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <p class="card-text text-center">{{nominado.nombre}} {{nominado.apellido}}</p>
+        <p class="card-text text-center" >Edad: {{nominado?.fecha_nacimiento | edad}}</p>
+      </div>
+      <div class="card-footer text-muted text-center">
+        <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.canal}}" target='_black' role="button" *ngIf="nominado.canal">
+          <i class="fab fa-twitch"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.youtube}}" target='_black' role="button" *ngIf="nominado.youtube">
+          <i class="fab fa-youtube"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.twitter}}" target='_black' role="button" *ngIf="nominado.twitter">
+          <i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.instagram}}" target='_black' role="button" *ngIf="nominado.instagram">
+          <i class="fab fa-instagram"></i></a>
+        </div>
       </div>
     </div>
-</div>
 
 </div>

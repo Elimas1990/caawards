@@ -8,3 +8,11 @@ video{
     object-fit: cover;
 }
 
+h1{
+    color:$dorado;
+    text-shadow: 1px 1px 2px black;
+}
+
+.section-nominaciones{
+    min-height: 100vh;
+}

@@ -33,10 +33,9 @@
         *ngIf="categoriaSelected"></app-streamers>
    
         
-        <div class="btn-group w-100 mt-3 position-absolute bottom-0" *ngIf="categoriaSelected">
-            <button type="button" class="btn btn-verde"   (click)="registrarTerna()">Nominar Streamer</button>
-            <button type="button" class="btn btn-amarillo "  >Reset Formulario</button>
-        </div>
+    
+        <button type="button" class="btn btn-verde mt-3 position-absolute bottom-0 w-100"  *ngIf="categoriaSelected" (click)="registrarTerna()">Nominar</button>
+      
 
     </div>
     

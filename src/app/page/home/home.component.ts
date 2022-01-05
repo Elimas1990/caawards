@@ -42,19 +42,22 @@ export class HomeComponent implements OnInit {
     this.srvCategoria.consultaSimple('anio','==',Number(this.anioSelected))
     .subscribe(x =>{
       this.listaCategorias=x
-      this.ternaSelect(this.listaCategorias[0].categoria.nombre)
+      this.ternaSelect(this.listaCategorias[0]?.categoria?.nombre)
     })
     
   }
 
   ternaSelect(terna:any){
-    this.ternaSelected=terna
+    if(terna){
+      this.ternaSelected=terna
    
-    this.srvCategoria.consultaDoble(where('anio','==',Number(this.anioSelected)),where('categoria.nombre','==',this.ternaSelected))
-    .subscribe(x =>{
-      this.listaNominados=x
-      this.listaNominados=this.listaNominados[0].nominados
-    })
+      this.srvCategoria.consultaDoble(where('anio','==',Number(this.anioSelected)),where('categoria.nombre','==',this.ternaSelected))
+      .subscribe(x =>{
+        this.listaNominados=x
+        this.listaNominados=this.listaNominados[0].nominados
+      })
+    }
+    
   }
 
 

@@ -23,18 +23,20 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>-->
-    <h2 class="text-center my-3 text-white">Categorias</h2>
-    <div class="row gx-0 justify-content-center">
-      <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6">
-        <app-categorias></app-categorias>
-        <app-select-anio [listaAnios]="listaAnios" (anioSelected)="anioSelect($event)"></app-select-anio>
-        <app-select-categoria [listaCategorias]="listaCategorias" (ternaSelected)="ternaSelect($event)"></app-select-categoria>
-        
+    <section class="section-nominaciones">
+      <h1 class="text-center my-5 ">Categorias</h1>
+      <div class="row gx-0 justify-content-center">
+        <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6">
+          <app-select-anio [listaAnios]="listaAnios" (anioSelected)="anioSelect($event)"></app-select-anio>
+          <app-select-categoria [listaCategorias]="listaCategorias" (ternaSelected)="ternaSelect($event)"></app-select-categoria>
+          
+        </div>
       </div>
-    </div>
-    <div class="container">
-      <app-lista-nominados [listaNominados]="listaNominados"></app-lista-nominados>
-    </div>
+      <div class="container">
+        <app-lista-nominados [listaNominados]="listaNominados"></app-lista-nominados>
+      </div>
+    </section>
+    
      
     <footer class="bg-dark text-center text-white mt-5">
 

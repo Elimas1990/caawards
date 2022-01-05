@@ -20,10 +20,13 @@ export class FormStreamerComponent implements OnInit {
   formBase:FormGroup=new FormGroup({
     nombre:new FormControl('',[Validators.required]),
     apellido:new FormControl('',[Validators.required]),
-    email:new FormControl('',[Validators.required,Validators.email]),
+    email:new FormControl('',[Validators.email]),
     fecha_nacimiento:new FormControl('',[this.validateFechaNacimiento]),
-    canal:new FormControl('',[Validators.required,Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
-    foto:new FormControl('',[Validators.required]),
+    canal:new FormControl('',[Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
+    instagram:new FormControl('',[Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
+    twitter:new FormControl('',[Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
+    youtube:new FormControl('',[Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
+    foto:new FormControl('',[]),
     tag:new FormControl('',[Validators.required])
   })
   constructor(private fb:FormBuilder) { 
@@ -35,16 +38,29 @@ export class FormStreamerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  completarCanal(){
+    this.formBase.get("canal")?.setValue('https://www.twitch.tv/'+this.formBase.get("tag")?.value.toLowerCase())
+    this.formBase.get("instagram")?.setValue('https://www.instagram.com/'+this.formBase.get("tag")?.value.toLowerCase())
+    this.formBase.get("twitter")?.setValue('https://twitter.com/'+this.formBase.get("tag")?.value.toLowerCase())
+    this.formBase.get("youtube")?.setValue('https://www.youtube.com/'+this.formBase.get("tag")?.value.toLowerCase())
+    
+  }
   guardarUsuario(){
 
+    this.formBase.get("tag")?.setValue(this.formBase.getRawValue().tag.toUpperCase());
+   
+    let obj=this.formBase.getRawValue();
+
+    Object.keys(obj).forEach((k) => {    
+      obj[k] == null || obj[k] == ''
+      && delete obj[k]
+    });
+   
     let objStreamer={
-      nombre:this.formBase.getRawValue().nombre,
-      apellido:this.formBase.getRawValue().apellido,
-      email:this.formBase.getRawValue().email,
-      tag:this.formBase.getRawValue().tag,
       foto:this.fileToUpload,
       estado:true,
     }
+    Object.assign(objStreamer,obj)
     if(this.formBase.getRawValue().fecha_nacimiento){
       Object.assign(objStreamer,{fecha_nacimiento: new Date(moment(this.formBase.getRawValue().fecha_nacimiento).toDate())})
     }

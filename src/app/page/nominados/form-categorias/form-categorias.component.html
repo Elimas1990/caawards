@@ -1,0 +1,24 @@
+<fieldset class="border p-3 m-1 border-warning" >
+    <legend class="w-auto text-dorado" data-bs-toggle="collapse" data-bs-target="#formularioCategoria"><u>Registro Categoria</u></legend>
+    <form [formGroup]="formCategoria" (ngSubmit)="formCategoria.valid" id="formularioCategoria" class="collapse">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputNombre" placeholder="Streamer nombre" formControlName="nombre" 
+            [ngClass]="{'is-invalid':formCategoria.get('nombre')?.touched && formCategoria.get('nombre')?.invalid, 'is-valid':formCategoria.get('nombre')?.valid}"
+            aria-describedby="validationnombre">
+            <div class="invalid-feedback text-center" id="validationnombre">
+                El nombre es obligatorio
+            </div>
+            <label for="inputNombre">Nombre de la terna</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea type="text" class="form-control" id="inputDescripcion" placeholder="Streamer descripcion" formControlName="descripcion" 
+            [ngClass]="{'is-valid':formCategoria.get('descripcion')?.valid}"></textarea>
+            <label for="inputDescripcion">Descripción de la terna</label>
+        </div>
+        <div class="btn-group w-100">
+            <button type="button" class="btn btn-verde"  type="submit" (click)="guardarCategoria()" [disabled]="!formCategoria.valid">Generar Categoría</button>
+            <button type="button" class="btn btn-amarillo "  type="reset" >Reset Formulario</button>
+        </div>
+    </form>
+    
+</fieldset>
