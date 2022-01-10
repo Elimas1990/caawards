@@ -4,6 +4,7 @@ import { collection, collectionChanges, collectionData, doc, Firestore, query, s
 
 import { Observable } from 'rxjs';
 import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getDoc, getDocs } from 'firebase/firestore';
 
 
 @Injectable({
@@ -56,10 +57,15 @@ export class StreamersService {
       
   }
 
-  consultaSimple(campo:string,operador:any,valor:any){
+  async consultaSimple(campo:string,operador:any,valor:any){
     const q = query(this.collec_streamers, where(campo, operador, valor));
-    
-    return collectionData(q,{idField:'iddoc'})
+    const docSnap = await getDocs(q)
+    let array:any=[]
+    docSnap.forEach((doc)=>{
+      array.push(doc.data());
+    })
+    return array
+    //return collectionData(q,{idField:'iddoc'})
   }
 
   /*async fileHandler(streamer:any){

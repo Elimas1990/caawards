@@ -1,43 +1,37 @@
 <fieldset class="border p-3 m-1 border-warning" >
-    
-    <div class="position-relative h-100">
-        <div class="row">
-            <div class="col"><legend class="w-auto text-dorado"><u>Nominar</u> </legend></div>
+   
+        <div class="row" >
+            <div class="col"><legend class="w-auto text-dorado" data-bs-toggle="collapse" data-bs-target="#formularioNominar" ><u>Nominar</u> </legend></div>
             <div class="col"><button class="btn btn-verde float-end" *ngIf="categoriaSelected" (click)="categoriaSelected=''">Volver</button></div>
         </div>
         
+        <div id="formularioNominar" class="position-relative h-100 collapse show">
+            <div class="form-floating mb-2" *ngIf="!categoriaSelected">
+                <input type="text" class="form-control" id="filterTerna" placeholder="Busca el terna" [(ngModel)]="filtroTerna"  >
+                <label for="filterTerna">Busca la terna...</label>
+            </div>
+            <app-ternas 
+            [listaCategorias]="listaCategorias" 
+            [filtroTerna]="filtroTerna"
+            (selectTerna)="selectTerna($event)" 
+            *ngIf="!categoriaSelected"></app-ternas>
         
+    
+            <h5 *ngIf="categoriaSelected" class="text-dorado">Terna seleccionada: "{{categoriaSelected?.nombre}}"</h5>
+            <div class="form-floating mb-2" *ngIf="categoriaSelected">
+                <input type="text" class="form-control" id="filter" placeholder="Busca el streamer" [(ngModel)]="filtroStreamer"  >
+                <label for="filter">Busca el streamer...</label>
+            </div>
+    
         
-        <div class="form-floating mb-2" *ngIf="!categoriaSelected">
-            <input type="text" class="form-control" id="filterTerna" placeholder="Busca el terna" [(ngModel)]="filtroTerna"  >
-            <label for="filterTerna">Busca la terna...</label>
+            <app-streamers 
+            [listaStreamers]="listaStreamers" 
+            [filtroStreamer]="filtroStreamer" 
+            (streamersSeleccionados)="streamersSeleccionados($event)" 
+            *ngIf="categoriaSelected"></app-streamers>
+            <button type="button" class="btn btn-verde mt-3 w-100"  *ngIf="categoriaSelected" (click)="registrarTerna()">Nominar</button>
         </div>
-        <app-ternas 
-        [listaCategorias]="listaCategorias" 
-        [filtroTerna]="filtroTerna"
-        (selectTerna)="selectTerna($event)" 
-        *ngIf="!categoriaSelected"></app-ternas>
-    
-
-        <h5 *ngIf="categoriaSelected" class="text-dorado">Terna seleccionada: "{{categoriaSelected?.nombre}}"</h5>
-        <div class="form-floating mb-2" *ngIf="categoriaSelected">
-            <input type="text" class="form-control" id="filter" placeholder="Busca el streamer" [(ngModel)]="filtroStreamer"  >
-            <label for="filter">Busca el streamer...</label>
-        </div>
-
-    
-        <app-streamers 
-        [listaStreamers]="listaStreamers" 
-        [filtroStreamer]="filtroStreamer" 
-        (streamersSeleccionados)="streamersSeleccionados($event)" 
-        *ngIf="categoriaSelected"></app-streamers>
-   
-        
-    
-        <button type="button" class="btn btn-verde mt-3 position-absolute bottom-0 w-100"  *ngIf="categoriaSelected" (click)="registrarTerna()">Nominar</button>
-      
-
-    </div>
+  
     
 
 

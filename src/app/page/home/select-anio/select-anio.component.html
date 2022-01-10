@@ -1,6 +1,18 @@
-<div class="form-floating my-3">
-    <select class="form-select text-center" id="listaAnio" aria-label="" [(ngModel)]="anio" (ngModelChange)="anioSelect()">
+<!--<div class="form-floating my-3">
+    <select class="form-select text-center upload-input" id="listaAnio" aria-label="" [(ngModel)]="anio" (ngModelChange)="anioSelect()">
       <option  *ngFor="let anio of listaAnios" [value]="anio">{{ anio }}</option>
     </select>
     <label for="listaAnio">Año de los awards</label>
+</div>-->
+
+
+
+<div class="contenedor-linea">
+  <button class="btn btn-izq btn-lg btn-flecha disabled" (click)="scrollLeft(true)" #fechaIzq> < </button>
+
+  <ul class="container-list" #contenedorlinea id="contenedorlinea">
+    <li class="container-li" *ngFor="let anio of listaAnios ; index as i"  ><button class="btn btn-lg btn-amarillo m-1"  #btnn (click)="anioSelect($event,i,false)">{{ anio }}</button></li>
+  </ul>
+  
+  <button class="btn btn-der btn-lg btn-flecha" (click)="scrollLeft(false)" #fechaDer> > </button>
 </div>

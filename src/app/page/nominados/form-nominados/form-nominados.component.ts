@@ -52,6 +52,9 @@ export class FormNominadosComponent implements OnInit {
     this.child.ternaGuardada();
   }
 
+  nombinarCollaps(element:any){
+    console.log(element)
+  }
  
   
 

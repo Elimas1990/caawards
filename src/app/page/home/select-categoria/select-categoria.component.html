@@ -1,6 +1,9 @@
-<div class="form-floating my-3">
-    <select class="form-select text-center" id="listaCategorias" aria-label="" [(ngModel)]="terna" (ngModelChange)="ternaSelect()">
+<div class="contenedor-linea mt-3" *ngIf="listaCategorias.length > 0">
+  <button class="btn btn-izq btn-lg btn-flecha disabled"  (click)="cambiarSelect(false)" #fIzq> < </button>
+  
+    <select class="form-select form-select-lg text-center" id="listaCategorias" aria-label="" [(ngModel)]="terna" (ngModelChange)="ternaSelect()" #selectCategoria>
       <option  *ngFor="let cat of listaCategorias" [value]="cat['categoria']['nombre']" >{{ cat['categoria']['nombre']}}</option>
     </select>
-    <label for="floatingSelect">Categorias CA Awards</label>
+   
+  <button class="btn btn-der btn-lg btn-flecha"  (click)="cambiarSelect(true)" #fDer> > </button>
 </div>

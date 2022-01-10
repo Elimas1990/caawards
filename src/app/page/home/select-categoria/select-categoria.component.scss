@@ -1,0 +1,27 @@
+@import "./../../../../variables_generales.scss";
+
+.contenedor-linea{
+    min-height: 48px;
+    justify-content: center!important;
+    display: flex!important;
+    align-items: center!important;
+
+}
+
+.btn-izq{
+    border-radius: 50% 0  0 50%;
+}
+.btn-der{
+    border-radius: 0 50% 50% 0;
+}
+
+.btn-flecha{
+    flex-shrink: 0!important;
+    color:white;
+    &:hover{
+        background-color: $amarillo;
+        border: 1px solid $dorado;
+    }
+    
+    
+}

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { TwitchService } from 'src/app/servicios/twitch.service';
-import { StreamerSortPipe } from "./../../../../pipes/streamer-sort.pipe";
 
 
 @Component({
@@ -65,7 +64,6 @@ export class StreamersComponent implements OnInit {
   }
 
   public ternaGuardada(){
-    console.log('ejecute')
     this.listaStreamers.forEach((element:any) => {
       delete element.selected
     });

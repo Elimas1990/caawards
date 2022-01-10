@@ -1,0 +1,56 @@
+@import "./../../../../variables_generales.scss";
+
+select { text-indent: 5px;
+}
+
+
+
+.container-list{
+    margin: 0 auto;
+    list-style: none!important;
+    position: relative!important;
+    overflow: hidden!important;
+    justify-content: flex-start!important;
+    display: flex!important;
+}
+
+.container-li{
+    flex-shrink: 0;
+}
+
+.btn-flecha{
+    flex-shrink: 0!important;
+    color:white;
+    &:hover{
+        background-color: $amarillo;
+        border: 1px solid $crema;
+    }
+    
+    
+}
+
+.btn-izq{
+    border-radius: 50% 0  0 50%;
+}
+.btn-der{
+    border-radius: 0 50% 50% 0;
+}
+.contenedor-linea{
+    min-height: 48px;
+    justify-content: center!important;
+    display: flex!important;
+    align-items: center!important;
+
+}
+
+ul{
+    padding-left: 33.3%;
+    padding-right: 33.3%;
+}
+.btn-amarillo{
+    color:white;
+    margin:3px!important;
+    border-radius: 5px;
+    width: 100px;
+    border: 1px solid $crema;
+}

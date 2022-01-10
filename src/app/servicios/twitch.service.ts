@@ -16,11 +16,11 @@ export class TwitchService {
   TWITCH_API_URL:string="https://api.twitch.tv/helix";
 
   yourHeader: HttpHeaders
-  userToken=JSON.parse(localStorage.getItem('user') as string).token
+  userToken=JSON.parse(localStorage.getItem('user') as string)?.token
 
 
   constructor(public http:HttpClient) { 
-      const token=JSON.parse(localStorage.getItem('user') as string).token
+      const token=JSON.parse(localStorage.getItem('user') as string)?.token
 
       this.yourHeader = new HttpHeaders({
         'Authorization': `Bearer ${this.userToken}`,
@@ -32,12 +32,15 @@ export class TwitchService {
       //this.data.subscribe(x=>console.log(x))
   }
 
-   search(query:string,campo:string):Observable<any>{
+  search(query:string,campo:string):Observable<any>{
   
     
     let queryUrl:string=`${this.TWITCH_API_URL}${campo}?${query}`;
     this.data=this.http.get(queryUrl,{ headers: this.yourHeader })
-    return this.data
+    return  this.data
 
   }
+
+
+  
 }

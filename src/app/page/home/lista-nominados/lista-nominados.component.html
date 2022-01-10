@@ -1,5 +1,5 @@
-<div class="row row-cols-1  g-4 d-flex justify-content-around mt-5"
-[ngClass]="{'row-cols-md-3': listaStreamers.length < 4, 'row-cols-md-5': listaStreamers.length > 3}">
+<!--<div class="row row-cols-1  g-4 d-flex justify-content-around mt-5"
+[ngClass]="{'row-cols-md-3': listaStreamers.length < 3, 'row-cols-md-5': listaStreamers.length >= 3}" [@inOutAnimation] *ngIf="showImage" >
     <div class="col" *ngFor="let nominado of listaStreamers">
 
     <div class="card " [ngClass]="{'card-border-silver': nominado.puesto === 2, 'card-border-gold': nominado.puesto === 1}">
@@ -24,4 +24,50 @@
       </div>
     </div>
 
+</div>-->
+
+
+<div class="row row-cols-1  g-4 d-flex justify-content-around mt-5"
+[ngClass]="{'row-cols-md-3': listaStreamers.length < 3, 'row-cols-md-5': listaStreamers.length >= 3}" [@inOutAnimation] *ngIf="showImage" >
+    <div class="col" *ngFor="let nominado of listaStreamers; index as i">
+      <div [@flip]="listaCartas[i]" class="flip-card-inner my-5" >
+        <div class="flip-card-front">
+          <div class="card " [ngClass]="{'card-border-silver': nominado.puesto === 2, 'card-border-gold': nominado.puesto === 1}" >
+            <div class="card-header text-center text-white">
+              {{nominado.tag}}
+            </div>
+            <img [src]="nominado.foto" class="pointer" alt="..." (click)="onFlipClick(i)">
+            <div class="card-footer text-muted text-center pointer" (click)="onFlipClick(i)" *ngIf="listaCartas[i]=='front'">Click + INFO</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card" [ngClass]="{'card-border-silver': nominado.puesto === 2, 'card-border-gold': nominado.puesto === 1}">
+            <div class="card-header text-center text-white">{{nominado.tag}}</div>
+            <div class="card-body pointer" (click)="onFlipClick(i)">
+                <p class="card-text text-center fw-bold">{{nominado.nombre}} {{nominado.apellido}}</p>
+                <p class="card-text text-center" >Edad: {{nominado?.fecha_nacimiento | edad}}</p>
+                <p class="card-text text-center" *ngIf="nominado.followers">Twitch Followes: <b>{{nominado?.followers}}</b></p>
+
+                <div class="card-text text-center m-0" *ngIf="nominado.team">
+                  Team:
+                  <p class="card-text text-center m-0 fw-bold" *ngFor="let team of nominado?.team">{{team?.team_display_name}}</p>
+                </div>
+           
+              
+            </div>
+            <div class="card-footer text-muted text-center bg-dark">
+              <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.canal}}" target='_black' role="button" *ngIf="nominado.canal">
+                <i class="fab fa-twitch"></i></a>
+              <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.youtube}}" target='_black' role="button" *ngIf="nominado.youtube">
+                <i class="fab fa-youtube"></i></a>
+              <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.twitter}}" target='_black' role="button" *ngIf="nominado.twitter">
+                <i class="fab fa-twitter"></i></a>
+              <a class="btn btn-outline-light btn-floating m-1" href="{{nominado.instagram}}" target='_black' role="button" *ngIf="nominado.instagram">
+                <i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
 </div>
+
