@@ -4,6 +4,7 @@ import * as AOS from 'aos';
 import { forkJoin, Observable} from 'rxjs';
 import { NominadosService } from 'src/app/servicios/nominados.service';
 import { StreamersService } from 'src/app/servicios/streamers.service';
+import { TwitchLoginService } from 'src/app/servicios/twitch-login.service';
 import { TwitchService } from 'src/app/servicios/twitch.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   anioSelected:number
   ternaSelected:string
 
-
+  
   constructor(private srvCategoria:NominadosService,
     private srvStreamers:StreamersService,
     private srvTwitch:TwitchService) { 
@@ -34,10 +35,17 @@ export class HomeComponent implements OnInit {
     
   }
 
+ 
 
   ngOnInit(): void {
     AOS.init()
     
+  }
+
+  validarAuth(user:any){
+    console.log(this.ternaSelected)
+    this.ternaSelect(this.ternaSelected)
+    //this.ternaSelect()
   }
 
   anioSelect(anio:any){
@@ -56,6 +64,7 @@ export class HomeComponent implements OnInit {
   ternaSelect(terna:any){
     
     this.listaNominados=[]
+
     if(terna){
       this.ternaSelected=terna
    
@@ -67,33 +76,31 @@ export class HomeComponent implements OnInit {
           let follows={}
           let teams={}
           
-          
-          this.srvTwitch.search(`login=${element.tag.toLowerCase()}`,"/users").subscribe(x=>{
-        
+          if(localStorage.getItem('user')){
+            this.srvTwitch.search(`login=${element.tag.toLowerCase()}`,"/users").subscribe(x=>{
 
-            let obsFollow=this.srvTwitch.search(`to_id=${x.data[0]?.id}`,"/users/follows")
-            let obsTeam=this.srvTwitch.search(`broadcaster_id=${x.data[0]?.id}`,"/teams/channel")
-            
-            forkJoin([obsFollow,obsTeam]).subscribe(result=>{
-            
-              follows={followers:result[0].total}
+              let obsFollow=this.srvTwitch.search(`to_id=${x.data[0]?.id}`,"/users/follows")
+              let obsTeam=this.srvTwitch.search(`broadcaster_id=${x.data[0]?.id}`,"/teams/channel")
+              
+              forkJoin([obsFollow,obsTeam]).subscribe(result=>{
+              
+                follows={followers:result[0].total}
 
-              if(result[1].data?.length > 0){
-                teams={team:result[1].data}
-              }
+                if(result[1].data?.length > 0){
+                  teams={team:result[1].data}
+                }
 
-              this.srvStreamers.consultaSimple("tag","==",element.tag).then(x=>{
-                
-                Object.assign(x[0],{puesto:element.puesto})
-                Object.assign(x[0],follows)
-                Object.assign(x[0],teams)
-                obj.nominados[index]=x[0]
+                this.srvStreamers.consultaSimple("tag","==",element.tag).then(x=>{
+                  
+                  Object.assign(x[0],{puesto:element.puesto})
+                  Object.assign(x[0],follows)
+                  Object.assign(x[0],teams)
+                  obj.nominados[index]=x[0]
+                })
               })
             })
 
-          })
-          
-          
+          }
         });
         this.listaNominados=obj.nominados
       })

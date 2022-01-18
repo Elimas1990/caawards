@@ -16,6 +16,8 @@ import { SelectAnioComponent } from './home/select-anio/select-anio.component';
 import { SelectCategoriaComponent } from './home/select-categoria/select-categoria.component';
 import { EdadPipe } from '../pipes/edad.pipe';
 import { FormCategoriasComponent } from './nominados/form-categorias/form-categorias.component';
+import { TwitchLoginSdkModule } from 'twitch-login-sdk';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -39,7 +41,12 @@ import { FormCategoriasComponent } from './nominados/form-categorias/form-catego
     CommonModule,
     PageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    TwitchLoginSdkModule.forRoot({ 
+      twitchId:  environment.twitchToken, //<******* YOUR TWITCH_ID 👈
+      redirect:  environment.twitchRedirect //<***** YOUR CALLBACK REDIRECT 👈
+    })
+  ],
+  exports:[]
 })
 export class PageModule { }

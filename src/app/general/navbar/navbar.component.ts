@@ -11,15 +11,30 @@ import { filter } from 'rxjs/operators';
 export class NavbarComponent implements OnInit {
 
   avatar:any=null
-  _item: any
+  _auth: any
+  set auth(value) {
+    this._auth = value;
+    this.srvTwitch.localItem = value;
+  }
+
+  get auth() {
+    let obj
+    if(this.srvTwitch.localItem){
+      obj=JSON.parse(this.srvTwitch.localItem)
+    }
+    return this._auth = obj;
+  }
   currentRoute:any
   navbarAbsolute:boolean=true;
+  
 
   constructor(private srvTwitch:TwitchLoginService,
     private router:Router) {
       this.checkCurrentUrl();
   }
 
+  ngOnInit(): void {
+  }
   checkCurrentUrl(){
     this.router.events.pipe(filter((event:any) => event instanceof NavigationEnd))
     .subscribe(e => {
@@ -35,21 +50,9 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
   
-  set item(value) {
-    this._item = value;
-    this.srvTwitch.localItem = value;
-  }
-
-  get item() {
-    let obj
-    if(this.srvTwitch.localItem){
-      obj=JSON.parse(this.srvTwitch.localItem)
-    }
-    return this._item = obj;
-  }
+  
+  
   
 
 

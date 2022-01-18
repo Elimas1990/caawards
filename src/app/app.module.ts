@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GeneralModule } from './general/general.module';
-import { TwitchLoginSdkModule } from 'twitch-login-sdk';
+//import { TwitchLoginSdkModule } from 'twitch-login-sdk';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { PageModule } from './page/page.module';
@@ -37,12 +37,8 @@ import { PageModule } from './page/page.module';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    GeneralModule,
-    PageModule,
-    TwitchLoginSdkModule.forRoot({ 
-      twitchId:  environment.twitchToken, //<******* YOUR TWITCH_ID 👈
-      redirect:  "http://localhost:4200/" //<***** YOUR CALLBACK REDIRECT 👈
-    })
+    GeneralModule/*,
+    PageModule*/
   ],
   exports:[],
   providers: [{ provide: LOCALE_ID, useValue: 'es-Ar' }],

@@ -13,6 +13,7 @@ export const environment = {
     messagingSenderId: '536048927234',
   },
   twitchToken:'jdg3br13a8yerct0ze6h3qi0h2yysr',
+  twitchRedirect:'http://localhost:4200/',
   production: false
 };
 

@@ -1,6 +1,10 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { query,collection, Firestore, addDoc,  where, collectionData, doc } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
+import { DocumentData } from 'rxfire/firestore/interfaces';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,14 +16,19 @@ export class TwitchLoginService {
   public twitchLogger:  any ;
   private _localItem: any;
   collec_usuario:any;
+  public twitchLogger2 = new BehaviorSubject<object>({})
 
-  constructor(firestore:Firestore) { 
+  yourHeader: HttpHeaders
+
+  constructor(firestore:Firestore,
+    public http:HttpClient) { 
     this.collec_usuario = collection(firestore, 'user');
-
   }
 
+  
   twitchCallback($event:any)  {
     this.twitchLogger = $event;
+    this.twitchLogger2.next($event) //= new Observable<DocumentData>(x=> x.next($event))
     localStorage.setItem('user',JSON.stringify(this.twitchLogger));
     let type_user='';
 
@@ -34,7 +43,6 @@ export class TwitchLoginService {
     let obj={
       tipo_user:type_user
     }
-    //addDoc(this.collec_usuario,Object.assign(this.twitchLogger,obj))
     setDoc(doc(this.collec_usuario,this.twitchLogger.id),Object.assign(this.twitchLogger,obj))
   }
 

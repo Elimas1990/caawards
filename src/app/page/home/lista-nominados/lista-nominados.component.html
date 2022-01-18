@@ -26,7 +26,10 @@
 
 </div>-->
 
-
+<div *ngIf="listaStreamers.length < 1" class="d-flex justify-content-around align-items-center vh-50">
+  <p class="h1 text-center text-light">Seleccione el año y la terna</p>
+  
+</div>
 <div class="row row-cols-1  g-4 d-flex justify-content-around mt-5"
 [ngClass]="{'row-cols-md-3': listaStreamers.length < 3, 'row-cols-md-5': listaStreamers.length >= 3}" [@inOutAnimation] *ngIf="showImage" >
     <div class="col" *ngFor="let nominado of listaStreamers; index as i">
@@ -44,13 +47,20 @@
           <div class="card" [ngClass]="{'card-border-silver': nominado.puesto === 2, 'card-border-gold': nominado.puesto === 1}">
             <div class="card-header text-center text-white">{{nominado.tag}}</div>
             <div class="card-body pointer" (click)="onFlipClick(i)">
-                <p class="card-text text-center fw-bold">{{nominado.nombre}} {{nominado.apellido}}</p>
-                <p class="card-text text-center" >Edad: {{nominado?.fecha_nacimiento | edad}}</p>
+                <p class="card-text text-center fw-bold" >{{nominado.nombre}} {{nominado.apellido}}</p>
+                <p class="card-text text-center" >Edad: {{nominado?.fecha_nacimiento | edad}}{{va | json}}</p>
                 <p class="card-text text-center" *ngIf="nominado.followers">Twitch Followes: <b>{{nominado?.followers}}</b></p>
 
                 <div class="card-text text-center m-0" *ngIf="nominado.team">
                   Team:
                   <p class="card-text text-center m-0 fw-bold" *ngFor="let team of nominado?.team">{{team?.team_display_name}}</p>
+                </div>
+                <div class="card-text text-center m-0" *ngIf="!auth">
+                  <p class="card-text text-center m-0 fw-bold" ><twitch-login
+                    scopes="user:read:email+openid+analytics:read:games+channel:read:subscriptions"
+                    (callback)="enviarTwitch($event)"
+                    label="Login Twitch">
+                </twitch-login></p>
                 </div>
            
               

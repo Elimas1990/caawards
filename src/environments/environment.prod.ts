@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: '536048927234',
   },
   twitchToken:'jdg3br13a8yerct0ze6h3qi0h2yysr',
+  twitchRedirect:'https://voting-6eeec.web.app/',
   production: true
 };

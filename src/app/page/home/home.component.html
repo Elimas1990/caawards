@@ -33,7 +33,7 @@
  
       </div>
       <div class="container" data-aos="zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-delay="300">
-        <app-lista-nominados [listaNominados]="listaNominados" ></app-lista-nominados>
+        <app-lista-nominados [listaNominados]="listaNominados" (validarAuth)="validarAuth($event)"></app-lista-nominados>
       </div>
     </section>
     
